@@ -1,28 +1,25 @@
-package kg.natvprod.natv_prod.entities;
+package kg.natvprod.natv_prod.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import kg.natvprod.natv_prod.entities.Order;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
-@Entity
-@Table(name = "tb_order_dates")
 @Getter
 @Setter
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class OrderDates {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@RequiredArgsConstructor
+public class OrderDatesDto {
     long id;
     @JsonFormat(pattern = "dd.MM.yyyy")
     Date date;
-    @ManyToOne
-    @JoinColumn(name = "tb_order")
-    Order order;
+
+    OrderDto orderDto;
 }

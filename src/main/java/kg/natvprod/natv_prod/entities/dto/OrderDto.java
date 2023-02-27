@@ -1,26 +1,25 @@
-package kg.natvprod.natv_prod.entities;
+package kg.natvprod.natv_prod.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.DatabindException;
+import kg.natvprod.natv_prod.entities.Banner;
+import kg.natvprod.natv_prod.entities.Channel;
+import kg.natvprod.natv_prod.entities.Text;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
-@Entity
-@Table(name = "tb_order")
 @Getter
 @Setter
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@RequiredArgsConstructor
+public class OrderDto {
     long id;
     @JsonProperty("created_date")
     @JsonFormat(pattern = "dd.MM.yyyy")
@@ -35,14 +34,10 @@ public class Order {
     boolean orderStatus;
     @JsonProperty("order_sum")
     double orderSum;
-    @ManyToOne
-    @JoinColumn(name = "channel")
-    Channel channel;
-    @ManyToOne
-    @JoinColumn(name = "text_ad")
-    Text text;
-    @ManyToOne
-    @JoinColumn(name = "banner_ad")
-    Banner banner;
 
+    ChannelDto channelDto;
+
+    TextDto textDto;
+
+    BannerDto bannerDto;
 }
