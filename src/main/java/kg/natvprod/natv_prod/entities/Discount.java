@@ -16,7 +16,7 @@ import java.util.Date;
 @Setter
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class discount {
+public class Discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
