@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final UserRepo userRepo;
-    @Autowired
 
     public UserServiceImpl(UserMapper userMapper, UserRepo userRepo) {
         this.userMapper = userMapper;
