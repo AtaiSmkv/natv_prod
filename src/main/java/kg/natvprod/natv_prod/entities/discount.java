@@ -1,9 +1,11 @@
 package kg.natvprod.natv_prod.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
