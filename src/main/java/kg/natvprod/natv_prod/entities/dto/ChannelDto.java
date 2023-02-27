@@ -2,6 +2,7 @@ package kg.natvprod.natv_prod.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kg.natvprod.natv_prod.entities.Discount;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +27,5 @@ public class ChannelDto {
     boolean channelStatus;
     @JsonProperty("logo_path")
     String logoPath;
+    List<DiscountDto> discountDtoList;
 }
