@@ -6,24 +6,24 @@ import kg.natvprod.natv_prod.mappers.UserMapper;
 import kg.natvprod.natv_prod.repository.UserRepo;
 import kg.natvprod.natv_prod.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserMapper userMapper;
     private final UserRepo userRepo;
 
-    public UserServiceImpl(UserMapper userMapper, UserRepo userRepo) {
-        this.userMapper = userMapper;
+    public UserServiceImpl( UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 
 
     @Override
     public UserDto save(UserDto userDto) {
-        User user = userMapper.INSTANCE.userDtoToUser(userDto);
+        User user = UserMapper.INSTANCE.userDtoToUser(userDto);
         user = userRepo.save(user);
+        userDto.setId(user.getId());
         return userDto;
     }
 }
