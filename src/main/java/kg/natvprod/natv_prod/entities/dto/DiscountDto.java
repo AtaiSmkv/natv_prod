@@ -3,18 +3,19 @@ package kg.natvprod.natv_prod.entities.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kg.natvprod.natv_prod.entities.Channel;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import kg.natvprod.natv_prod.services.impl.DateUtil;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 public class DiscountDto {
@@ -29,5 +30,7 @@ public class DiscountDto {
     @JsonProperty("discount_days")
     int discountDays;
 
+    @JsonProperty("channel")
     ChannelDto channelDto;
+
 }

@@ -20,12 +20,12 @@ public class ChannelDto {
     Long id;
     @JsonProperty("channel_name")
     String channelName;
-    @JsonProperty("created_date")
-            @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonProperty("created_day")
+    @JsonFormat(pattern = "dd.MM.yyyy")
     Date createdDate;
     @JsonProperty("channel_status")
     boolean channelStatus;
     @JsonProperty("logo_path")
     String logoPath;
-    List<DiscountDto> discountDtoList;
+
 }

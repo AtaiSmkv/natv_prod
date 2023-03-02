@@ -2,6 +2,7 @@ package kg.natvprod.natv_prod.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kg.natvprod.natv_prod.services.impl.DateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -34,4 +35,10 @@ public class Price {
     @ManyToOne
     @JoinColumn(name = "channel")
     Channel channel;
+
+    @PrePersist
+    void startEndDate() {
+        startDate = new Date();
+        endDate = new DateUtil().getInstance().getEndDate();
+    }
 }

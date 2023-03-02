@@ -2,10 +2,8 @@ package kg.natvprod.natv_prod.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import kg.natvprod.natv_prod.services.impl.DateUtil;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -15,6 +13,7 @@ import java.util.Date;
 @Table(name = "tb_discount")
 @Getter
 @Setter
+@ToString
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Discount {
@@ -31,8 +30,14 @@ public class Discount {
     @JsonProperty("discount_days")
     int discountDays;
     @ManyToOne
-    @JoinColumn(name = "channel")
+    @JoinColumn(name = "channel_id")
     Channel channel;
+
+    @PrePersist
+    void startEndDate() {
+        startDate = new Date();
+        endDate = new DateUtil().getInstance().getEndDate();
+    }
 
 
 }

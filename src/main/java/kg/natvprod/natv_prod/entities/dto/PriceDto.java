@@ -30,5 +30,6 @@ public class PriceDto {
     @JsonFormat(pattern = "dd.MM.yyyy")
     Date endDate;
 
+    @JsonProperty("channel")
     ChannelDto channelDto;
 }
