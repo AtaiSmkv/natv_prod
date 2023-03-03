@@ -29,7 +29,7 @@ public class OrderDto {
     @JsonProperty("client_fio")
     String clientFio;
     @JsonProperty("cleint_phone")
-    String cleintPhone;
+    String clientPhone;
     @JsonProperty("order_status")
     boolean orderStatus;
     @JsonProperty("order_sum")

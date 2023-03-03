@@ -1,6 +1,7 @@
 package kg.natvprod.natv_prod.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import kg.natvprod.natv_prod.services.impl.DateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,9 @@ public class OrderDates {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     @JsonFormat(pattern = "dd.MM.yyyy")
-    Date date;
+    Date days;
     @ManyToOne
     @JoinColumn(name = "tb_order")
     Order order;
+
 }

@@ -11,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ import java.util.Date;
 public class OrderDatesDto {
     long id;
     @JsonFormat(pattern = "dd.MM.yyyy")
-    Date date;
+    Date days;
 
     OrderDto orderDto;
 }
