@@ -3,6 +3,7 @@ package kg.natvprod.natv_prod.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DatabindException;
+import kg.natvprod.natv_prod.services.impl.DateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -36,13 +37,18 @@ public class Order {
     @JsonProperty("order_sum")
     double orderSum;
     @ManyToOne
-    @JoinColumn(name = "channel")
+    @JoinColumn(name = "channel_id")
     Channel channel;
     @ManyToOne
-    @JoinColumn(name = "text_ad")
+    @JoinColumn(name = "text_id")
     Text text;
     @ManyToOne
-    @JoinColumn(name = "banner_ad")
+    @JoinColumn(name = "banner_id")
     Banner banner;
+
+    @PrePersist
+    void startEndDate() {
+        createdDate = new Date();
+    }
 
 }

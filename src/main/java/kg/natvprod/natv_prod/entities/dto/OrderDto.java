@@ -28,16 +28,16 @@ public class OrderDto {
     String clientEmail;
     @JsonProperty("client_fio")
     String clientFio;
-    @JsonProperty("cleint_phone")
+    @JsonProperty("client_phone")
     String clientPhone;
     @JsonProperty("order_status")
     boolean orderStatus;
     @JsonProperty("order_sum")
     double orderSum;
-
-    ChannelDto channelDto;
-
-    TextDto textDto;
-
-    BannerDto bannerDto;
+    @JsonProperty("channel_id")
+    int channelId;
+    @JsonProperty("text_id")
+    int textId;
+    @JsonProperty("banner_id")
+    int bannerId;
 }
