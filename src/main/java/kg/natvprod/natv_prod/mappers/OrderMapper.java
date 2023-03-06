@@ -10,9 +10,9 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface OrderMapper {
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
-    /*@Mapping(target = "channelId", source = "channel.id")
+    @Mapping(target = "channelId", source = "channel.id")
     @Mapping(target = "textId", source = "text.id")
-    @Mapping(target = "bannerId", source = "banner.id")*/
+    @Mapping(target = "bannerId", source = "banner.id")
     OrderDto orderToOrderDto(Order order);
     @InheritInverseConfiguration
     Order orderDtoToOrder(OrderDto orderDto);

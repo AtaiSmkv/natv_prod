@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
@@ -25,5 +27,10 @@ public class UserServiceImpl implements UserService {
         user = userRepo.save(user);
         userDto.setId(user.getId());
         return userDto;
+    }
+
+    @Override
+    public List <User> findAll() {
+        return userRepo.findAll();
     }
 }
