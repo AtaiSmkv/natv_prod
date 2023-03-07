@@ -30,7 +30,6 @@ public class Channel {
     @JsonProperty("logo_path")
     String logoPath;
 
-
     @PrePersist
     void onCreatedDay() {
         createdDate = new Date();
