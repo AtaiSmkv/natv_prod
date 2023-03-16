@@ -1,6 +1,6 @@
 package kg.natvprod.natv_prod.repository;
 
-import kg.natvprod.natv_prod.entities.Price;
+import kg.natvprod.natv_prod.models.entities.Price;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface PriceRepo extends JpaRepository<Price, Long> {
     @Query(value = "select * from tb_price where channel = :id", nativeQuery = true)
     Price getPrice(Long id);
+    @Query (value = "select price_per_symbol from tb_price where channel = :id ", nativeQuery = true)
+    double getPricePerSymbol(Long id);
+
 }

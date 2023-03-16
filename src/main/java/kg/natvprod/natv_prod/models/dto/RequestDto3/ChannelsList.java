@@ -1,26 +1,25 @@
-package kg.natvprod.natv_prod.entities.dto;
+package kg.natvprod.natv_prod.models.dto.RequestDto3;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import kg.natvprod.natv_prod.entities.Order;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
-public class OrderDatesDto {
-    long id;
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class ChannelsList {
+    int channelId;
     @JsonFormat(pattern = "dd.MM.yyyy")
-    Date days;
+    List<Date> days;
+    double price;
+    double priceWithDiscount;
 
-    OrderDto orderDto;
+
 }

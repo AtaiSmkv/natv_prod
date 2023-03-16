@@ -1,16 +1,10 @@
 package kg.natvprod.natv_prod.mappers;
 
-import kg.natvprod.natv_prod.entities.User;
-import kg.natvprod.natv_prod.entities.dto.UserDto;
-import org.apache.catalina.UserDatabase;
+import kg.natvprod.natv_prod.models.entities.User;
+import kg.natvprod.natv_prod.models.dto.UserDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Mapper
 public interface UserMapper {

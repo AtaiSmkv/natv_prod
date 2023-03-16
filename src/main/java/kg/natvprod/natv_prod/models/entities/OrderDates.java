@@ -1,7 +1,6 @@
-package kg.natvprod.natv_prod.entities;
+package kg.natvprod.natv_prod.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import kg.natvprod.natv_prod.services.impl.DateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_order_dates")
@@ -21,10 +21,9 @@ public class OrderDates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @JsonFormat(pattern = "dd.MM.yyyy")
     Date days;
     @ManyToOne
-    @JoinColumn(name = "tb_order")
+    @JoinColumn(name = "order_id")
     Order order;
 
 }

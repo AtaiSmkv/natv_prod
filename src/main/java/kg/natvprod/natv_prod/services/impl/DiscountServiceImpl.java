@@ -1,7 +1,7 @@
 package kg.natvprod.natv_prod.services.impl;
 
-import kg.natvprod.natv_prod.entities.Discount;
-import kg.natvprod.natv_prod.entities.dto.DiscountDto;
+import kg.natvprod.natv_prod.models.entities.Discount;
+import kg.natvprod.natv_prod.models.dto.DiscountDto;
 import kg.natvprod.natv_prod.mappers.DiscountMapper;
 import kg.natvprod.natv_prod.repository.ChannelRepo;
 import kg.natvprod.natv_prod.repository.DiscountRepo;
@@ -10,6 +10,7 @@ import kg.natvprod.natv_prod.services.DiscountService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -32,5 +33,10 @@ public class DiscountServiceImpl implements DiscountService {
         discountDto.setEndDate(discount.getEndDate());
 
         return discountDto;
+    }
+
+    @Override
+    public List<Discount> findAll() {
+        return discountRepo.findAll();
     }
 }

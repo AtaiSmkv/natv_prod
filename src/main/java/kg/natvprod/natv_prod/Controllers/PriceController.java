@@ -1,12 +1,12 @@
 package kg.natvprod.natv_prod.Controllers;
 
-import kg.natvprod.natv_prod.entities.Price;
-import kg.natvprod.natv_prod.entities.dto.PriceDto;
+import kg.natvprod.natv_prod.models.dto.PriceDto;
+import kg.natvprod.natv_prod.models.entities.Price;
+import kg.natvprod.natv_prod.models.entities.Text;
 import kg.natvprod.natv_prod.services.PriceService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/price")
@@ -20,4 +20,10 @@ public class PriceController {
     public PriceDto save(@RequestBody PriceDto priceDto) {
         return priceService.save(priceDto);
     }
+    @GetMapping("/findAll")
+    public List<Price> findAll(){
+        return priceService.findAll();
+    }
+
+
 }

@@ -1,6 +1,5 @@
-package kg.natvprod.natv_prod.entities.dto;
+package kg.natvprod.natv_prod.models.dto.RequestDto1;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
-public class BannerDto {
-    long id;
-    @JsonProperty("file_path")
-    String filePath;
+public class DiscountsDto {
+    int fromDayCount;
+    double discount;
 }

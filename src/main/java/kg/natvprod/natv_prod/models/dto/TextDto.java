@@ -1,4 +1,4 @@
-package kg.natvprod.natv_prod.entities;
+package kg.natvprod.natv_prod.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -7,17 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "tb_text_ad")
 @Getter
 @Setter
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Text {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+@RequiredArgsConstructor
+public class TextDto {
     long id;
     String text;
     @JsonProperty("symbol_count")

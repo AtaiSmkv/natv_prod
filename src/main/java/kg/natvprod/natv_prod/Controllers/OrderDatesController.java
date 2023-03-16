@@ -1,6 +1,6 @@
 package kg.natvprod.natv_prod.Controllers;
 
-import kg.natvprod.natv_prod.entities.dto.OrderDatesDto;
+import kg.natvprod.natv_prod.models.dto.OrderDatesDto;
 import kg.natvprod.natv_prod.services.OrderDatesService;
 import org.springframework.web.bind.annotation.*;
 

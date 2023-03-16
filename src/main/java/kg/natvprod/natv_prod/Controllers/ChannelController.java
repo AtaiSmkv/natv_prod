@@ -1,7 +1,9 @@
 package kg.natvprod.natv_prod.Controllers;
 
-import kg.natvprod.natv_prod.entities.dto.ChannelDto;
-import kg.natvprod.natv_prod.entities.dto.RequestDto1.ChannelListDto;
+import kg.natvprod.natv_prod.models.dto.ChannelDto;
+import kg.natvprod.natv_prod.models.dto.RequestDto1.ChannelListDto;
+import kg.natvprod.natv_prod.models.entities.Channel;
+import kg.natvprod.natv_prod.models.entities.Order;
 import kg.natvprod.natv_prod.services.ChannelService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +23,9 @@ public class ChannelController {
     }
 
     @GetMapping("/find")
-    List<ChannelListDto> findAll() {
+    public List<ChannelListDto> findAll() {
        return channelService.findAll();
     }
+
 
 }

@@ -1,7 +1,7 @@
 package kg.natvprod.natv_prod.mappers;
 
-import kg.natvprod.natv_prod.entities.Order;
-import kg.natvprod.natv_prod.entities.dto.OrderDto;
+import kg.natvprod.natv_prod.models.entities.Order;
+import kg.natvprod.natv_prod.models.dto.OrderDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

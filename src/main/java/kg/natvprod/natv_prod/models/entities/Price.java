@@ -1,4 +1,4 @@
-package kg.natvprod.natv_prod.entities;
+package kg.natvprod.natv_prod.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,27 +10,27 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "tb_discount")
+@Table(name = "tb_price")
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Discount {
+public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    double discount;
+    @JsonProperty("price_per_symbol")
+    double pricePerSymbol;
+    @JsonProperty("banner_price")
+    double bannerPrice;
     @JsonProperty("start_date")
     @JsonFormat(pattern = "dd.MM.yyyy")
     Date startDate;
     @JsonProperty("end_date")
     @JsonFormat(pattern = "dd.MM.yyyy")
     Date endDate;
-    @JsonProperty("discount_days")
-    int discountDays;
     @ManyToOne
-    @JoinColumn(name = "channel_id")
+    @JoinColumn(name = "channel")
     Channel channel;
 
     @PrePersist
@@ -38,6 +38,5 @@ public class Discount {
         startDate = new Date();
         endDate = new DateUtil().getInstance().getEndDate();
     }
-
 
 }

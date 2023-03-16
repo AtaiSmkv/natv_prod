@@ -1,14 +1,13 @@
 package kg.natvprod.natv_prod.services.impl;
 
-import kg.natvprod.natv_prod.entities.Channel;
-import kg.natvprod.natv_prod.entities.Discount;
-import kg.natvprod.natv_prod.entities.dto.ChannelDto;
-import kg.natvprod.natv_prod.entities.dto.RequestDto1.ChannelListDto;
-import kg.natvprod.natv_prod.entities.dto.RequestDto1.DiscountsDto;
+import kg.natvprod.natv_prod.models.entities.Channel;
+import kg.natvprod.natv_prod.models.entities.Discount;
+import kg.natvprod.natv_prod.models.dto.Calculate.CalculateDto;
+import kg.natvprod.natv_prod.models.dto.ChannelDto;
+import kg.natvprod.natv_prod.models.dto.RequestDto1.ChannelListDto;
+import kg.natvprod.natv_prod.models.dto.RequestDto1.DiscountsDto;
 import kg.natvprod.natv_prod.mappers.ChannelMapper;
-import kg.natvprod.natv_prod.repository.ChannelRepo;
-import kg.natvprod.natv_prod.repository.DiscountRepo;
-import kg.natvprod.natv_prod.repository.PriceRepo;
+import kg.natvprod.natv_prod.repository.*;
 import kg.natvprod.natv_prod.services.ChannelService;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +20,15 @@ public class ChannelServiceImpl implements ChannelService {
     private final ChannelRepo channelRepo;
     private final PriceRepo priceRepo;
     private final DiscountRepo discountRepo;
+    private final OrderRepo orderRepo;
 
-    public ChannelServiceImpl(ChannelRepo channelRepo, PriceRepo priceRepo, DiscountRepo discountRepo) {
+
+    public ChannelServiceImpl(ChannelRepo channelRepo, PriceRepo priceRepo, DiscountRepo discountRepo, OrderRepo orderRepo) {
         this.channelRepo = channelRepo;
         this.priceRepo = priceRepo;
         this.discountRepo = discountRepo;
+        this.orderRepo = orderRepo;
+
     }
 
     @Override
@@ -40,7 +43,7 @@ public class ChannelServiceImpl implements ChannelService {
     public List<ChannelListDto> findAll() {
         List<ChannelListDto> channelListDtos = new ArrayList<>();
         List<Channel> channelList = channelRepo.findAllByActive();
-        for (Channel item: channelList) {
+        for (Channel item : channelList) {
             ChannelListDto channelListDto = new ChannelListDto();
             channelListDto.setChannelName(item.getChannelName());
             channelListDto.setLogo(item.getLogoPath());
@@ -50,18 +53,53 @@ public class ChannelServiceImpl implements ChannelService {
                     channelListDto.setDiscounts(getDiscount(item.getId()));
                 }
             }
-        channelListDtos.add(channelListDto);
+            channelListDtos.add(channelListDto);
 
         }
 
         return channelListDtos;
     }
-    private List<DiscountsDto> getDiscount (Long id) {
+
+    @Override
+    public CalculateDto calculate(CalculateDto calculateDto) {
+        calculateDto.setText(calculateDto.getText());
+        calculateDto.setDaysCount(calculateDto.getDaysCount());
+        calculateDto.setChannelId(calculateDto.getChannelId());
+
+        boolean active = channelRepo.findByActive(calculateDto.getChannelId());
+
+
+            if (active == false) {
+            throw new RuntimeException("The channel is not active!");
+        }
+        getPriceAndDiscount(calculateDto);
+        return calculateDto;
+    }
+
+    private void getPriceAndDiscount(CalculateDto calculateDto) {
+        if (calculateDto.getText().replaceAll(" ", "").length() < 20) {
+            throw new RuntimeException("The qunatity of symbols should be from 20");
+        }
+        calculateDto.setPrice(calculateDto.getText().replaceAll(" ", "").length() *
+                priceRepo.getPricePerSymbol(calculateDto.getChannelId()) * calculateDto.getDaysCount());
+        if (calculateDto.getDaysCount() >= 3 && calculateDto.getDaysCount() < 7) {
+            calculateDto.setPriceWithDiscount(calculateDto.getPrice() - calculateDto.getPrice() * 0.05);
+        }
+        if (calculateDto.getDaysCount() >= 7 && calculateDto.getDaysCount() < 10) {
+            calculateDto.setPriceWithDiscount(calculateDto.getPrice() - calculateDto.getPrice() * 0.1);
+        }
+        if (calculateDto.getDaysCount() >= 10) {
+            calculateDto.setPriceWithDiscount(calculateDto.getPrice() - calculateDto.getPrice() * 0.15);
+        }
+    }
+
+
+    private List<DiscountsDto> getDiscount(Long id) {
         List<Discount> discounts = discountRepo.getDiscounts(id);
         List<DiscountsDto> newDiscountsDto = new ArrayList<>();
-        for (Discount item: discounts) {
+        for (Discount item : discounts) {
             if (item.getStartDate().before(new Date()) &&
-                         item.getEndDate().after(new Date())) {
+                    item.getEndDate().after(new Date())) {
                 DiscountsDto discountsDto = new DiscountsDto();
                 discountsDto.setDiscount(item.getDiscount());
                 discountsDto.setFromDayCount(item.getDiscountDays());

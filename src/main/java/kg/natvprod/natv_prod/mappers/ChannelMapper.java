@@ -1,15 +1,10 @@
 package kg.natvprod.natv_prod.mappers;
 
-import kg.natvprod.natv_prod.entities.Channel;
-import kg.natvprod.natv_prod.entities.dto.ChannelDto;
-import kg.natvprod.natv_prod.entities.dto.DiscountDto;
+import kg.natvprod.natv_prod.models.entities.Channel;
+import kg.natvprod.natv_prod.models.dto.ChannelDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 @Mapper

@@ -1,9 +1,8 @@
-package kg.natvprod.natv_prod.entities;
+package kg.natvprod.natv_prod.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.DatabindException;
-import kg.natvprod.natv_prod.services.impl.DateUtil;
+import kg.natvprod.natv_prod.models.enums.Status;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_order")
@@ -30,10 +30,11 @@ public class Order {
     String clientEmail;
     @JsonProperty("client_fio")
     String clientFio;
-    @JsonProperty("cleint_phone")
-    String cleintPhone;
+    @JsonProperty("client_phone")
+    String clientPhone;
     @JsonProperty("order_status")
-    boolean orderStatus;
+    @Enumerated (EnumType.STRING)
+    Status status;
     @JsonProperty("order_sum")
     double orderSum;
     @ManyToOne

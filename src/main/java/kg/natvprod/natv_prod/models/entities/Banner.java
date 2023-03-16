@@ -1,4 +1,4 @@
-package kg.natvprod.natv_prod.entities.dto;
+package kg.natvprod.natv_prod.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -7,17 +7,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tb_banner_ad")
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
-public class UserDto {
+public class Banner {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String fio;
-    String role;
-    String login;
-    String email;
-    String phone;
-    @JsonProperty("user_status")
-    boolean userStatus;
+    @JsonProperty("file_path")
+    String filePath;
 }

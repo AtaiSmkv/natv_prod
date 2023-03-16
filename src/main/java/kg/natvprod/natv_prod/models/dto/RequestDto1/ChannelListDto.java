@@ -1,7 +1,5 @@
-package kg.natvprod.natv_prod.entities.dto.RequestDto1;
+package kg.natvprod.natv_prod.models.dto.RequestDto1;
 
-import kg.natvprod.natv_prod.entities.Channel;
-import kg.natvprod.natv_prod.entities.Discount;
 import lombok.Data;
 
 import java.util.List;

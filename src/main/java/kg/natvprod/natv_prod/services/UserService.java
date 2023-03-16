@@ -1,7 +1,7 @@
 package kg.natvprod.natv_prod.services;
 
-import kg.natvprod.natv_prod.entities.User;
-import kg.natvprod.natv_prod.entities.dto.UserDto;
+import kg.natvprod.natv_prod.models.entities.User;
+import kg.natvprod.natv_prod.models.dto.UserDto;
 
 import java.util.List;
 

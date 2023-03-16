@@ -1,18 +1,13 @@
-package kg.natvprod.natv_prod.entities.dto;
+package kg.natvprod.natv_prod.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import kg.natvprod.natv_prod.entities.Banner;
-import kg.natvprod.natv_prod.entities.Channel;
-import kg.natvprod.natv_prod.entities.Text;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Getter

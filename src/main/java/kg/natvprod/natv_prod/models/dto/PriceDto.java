@@ -1,36 +1,32 @@
-package kg.natvprod.natv_prod.entities.dto;
+package kg.natvprod.natv_prod.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import kg.natvprod.natv_prod.entities.Channel;
-import kg.natvprod.natv_prod.services.impl.DateUtil;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
-public class DiscountDto {
+public class PriceDto {
     long id;
-    double discount;
+    @JsonProperty("price_per_symbol")
+    double pricePerSymbol;
+    @JsonProperty("banner_price")
+    double bannerPrice;
     @JsonProperty("start_date")
     @JsonFormat(pattern = "dd.MM.yyyy")
     Date startDate;
     @JsonProperty("end_date")
     @JsonFormat(pattern = "dd.MM.yyyy")
     Date endDate;
-    @JsonProperty("discount_days")
-    int discountDays;
 
     @JsonProperty("channel")
-    ChannelDto channelDto;
-
+    int channel;
 }
