@@ -11,9 +11,9 @@ import lombok.experimental.FieldDefaults;
 @RequiredArgsConstructor
 public class CalculateDto {
     String text;
-    @JsonProperty("days_count")
+
     int daysCount;
-    @JsonProperty("channel_id")
+
     long channelId;
     double price;
 

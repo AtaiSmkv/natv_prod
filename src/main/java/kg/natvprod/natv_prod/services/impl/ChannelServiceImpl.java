@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChannelServiceImpl implements ChannelService {
@@ -36,6 +37,7 @@ public class ChannelServiceImpl implements ChannelService {
         Channel channel = ChannelMapper.INSTANCE.channelDtoToChannel(channelDto);
         channel = channelRepo.save(channel);
         channelDto.setId(channel.getId());
+        channelDto.setCreatedDate(channel.getCreatedDate());
         return channelDto;
     }
 
@@ -65,6 +67,8 @@ public class ChannelServiceImpl implements ChannelService {
         calculateDto.setText(calculateDto.getText());
         calculateDto.setDaysCount(calculateDto.getDaysCount());
         calculateDto.setChannelId(calculateDto.getChannelId());
+        System.err.println(calculateDto.getChannelId());
+        System.err.println(channelRepo.findByActive(calculateDto.getChannelId()));
 
         boolean active = channelRepo.findByActive(calculateDto.getChannelId());
 
@@ -72,8 +76,15 @@ public class ChannelServiceImpl implements ChannelService {
             if (active == false) {
             throw new RuntimeException("The channel is not active!");
         }
+        System.err.println("???????");
         getPriceAndDiscount(calculateDto);
         return calculateDto;
+    }
+
+    @Override
+    public Optional<Channel> findById(Long id) {
+
+        return channelRepo.findById(id);
     }
 
     private void getPriceAndDiscount(CalculateDto calculateDto) {

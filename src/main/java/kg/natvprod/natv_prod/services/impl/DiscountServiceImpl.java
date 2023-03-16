@@ -7,6 +7,7 @@ import kg.natvprod.natv_prod.repository.ChannelRepo;
 import kg.natvprod.natv_prod.repository.DiscountRepo;
 import kg.natvprod.natv_prod.services.ChannelService;
 import kg.natvprod.natv_prod.services.DiscountService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -39,4 +40,8 @@ public class DiscountServiceImpl implements DiscountService {
     public List<Discount> findAll() {
         return discountRepo.findAll();
     }
+
+
+
+
 }
